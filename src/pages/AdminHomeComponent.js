@@ -24,7 +24,7 @@ const AdminHomeComponent = () => {
                             <Link className="nav-link" to="/addCourse">Add Course</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/Course">List Of Courses</Link>
+                            <Link className="nav-link" to="/course">List Of Courses</Link>
                         </li>
                     </ul>
                 </div>

@@ -13,8 +13,8 @@ import AddCourse from './pages/AddCourseComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AdminHome from './pages/AdminHomeComponent'
-import ClientList from './pages/ClientList';
-import ClientEdit from "./pages/ClientEdit";
+import AdminCourseList from './pages/AdminCourseList';
+import CourseEdit from "./pages/CourseEdit";
 
 const App = () => {
     return (
@@ -32,8 +32,8 @@ const App = () => {
                     <Route path="/adminLogin" element={<AdminLogin />} />
                     <Route path="/adminHome" element={<AdminHome />} />
                     <Route path="/addCourse" element={<AddCourse />} />
-                    <Route path='/courses' element={<ClientList />}/>
-                    <Route path='/clients/:id' element={<ClientEdit />}/>
+                    <Route path='/adminCourses' element={<AdminCourseList />}/>
+                    <Route path='/courses/:id' element={<CourseEdit />}/>
                 </Routes>
                 <FooterComponent className='footer-container'/>
             </div>

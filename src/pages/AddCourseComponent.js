@@ -1,76 +1,57 @@
-//import axios from './axios'; // Import the Axios instanceimport axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import CourseService from './CourseService';
-
+import React, { Component } from 'react';
 import '../assets/css/contactUs.css';
 
-const AddCourseComponent = () => {
-    const [form, setForm] = useState({
-        name: '',
-        description: ''
-    });
-
+class AddCourseComponent extends Component {
     
-    const navigate = useNavigate();
+    emptyItem = {
+        name: '',
+        description:''
+    }
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setForm(prevForm => ({
-            ...prevForm,
-            [name]: value
-        }));
+    constructor(props){
+        super(props);
+        this.state = {
+            item: this.emptyItem
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+
+    handleChange (event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        const description = target.description;
+        let item  = {...this.state.item}
+        item[name] = value;
+        this.setState({item});
     };
 
-    const [course, setCourse] = useState(form);
+    async handleSubmit (event) {
+        event.preventDefault();
+        const {item} = this.state;
 
-    const handleSubmit = async (event) => {
-        console.log('before form'); 
-        console.log(form);
-        console.log('after from and before course');
-        
-        console.log(course);
-        let courseJson = {name:form.name, description:form.description};
-        console.log('courseJson => ' + JSON.stringify(courseJson)); 
-        console.log('after all');
-
-
-        CourseService.createCourse(courseJson).then(res =>{
-            this.props.history.push('/course');
-        });
-
-
-       /* event.preventDefault();
-
-        await fetch(`/course`, {
-            method: 'POST',
+        await fetch('/course' + (item.id ? '/' + item.id : ''), {
+            method: (item.id) ? 'PUT' : 'POST',
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYW5rYWp3YWdoQGdtYWlsLmNvbSIsImlhdCI6MTcxOTI4MjAzMSwiZXhwIjoxNzE5Mjg1NjMxfQ.PdCUitkaGdDyMJpsRmaGEoOwGfCdZwuVBFw3si6ctNI'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYW5rYWp3YWdoQGdtYWlsLmNvbSIsImlhdCI6MTcyMDA1NzUyOSwiZXhwIjoxNzIwMDYxMTI5fQ.EGkF0QJhEi71bVSX7ugCAjyJkKDSyebp7CO19pjl7bU'
             },
-            body: JSON.stringify(course)
-          });*/
-          setCourse(form);
-        //  this.props.history.push('/course');
-          
-        
-          try {
-          //  const response = await axios.post(`/course`, form);
-         // console.log('axios');
-            // Handle the response
-            navigate('/adminHome');
-          } catch (error) {
-            // Handle errors
-          }
+            body: JSON.stringify(item),
+        });
+        this.props.history.push('/course');
     };
 
-   
-
-    return (
+    render() {
+        const {item} = this.state;
+        const title = <h2>{item.id ? 'Edit Course' : 'Add Course'}</h2>;
+    return <div>
         <section className="contactus">
             <div className="login col-lg-4 m-auto shadow-lg">
-                <form onSubmit={handleSubmit}>                    
+                <form onSubmit={this.handleSubmit}>                    
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">Course Name: <span className='red'>*</span>:</label>
                         <input
@@ -79,8 +60,8 @@ const AddCourseComponent = () => {
                             type="name"
                             placeholder="Name"
                             className="form-control"
-                            value={form.name}
-                            onChange={handleChange}
+                            value={item.name}
+                            onChange={this.handleChange}
                             required
                         />
                     </div>
@@ -92,8 +73,8 @@ const AddCourseComponent = () => {
                             type="description"
                             placeholder="Description"
                             className="form-control"
-                            value={form.description}
-                            onChange={handleChange}
+                            value={item.description}
+                            onChange={this.handleChange}
                             required
                         />
                     </div>
@@ -101,7 +82,8 @@ const AddCourseComponent = () => {
                 </form>
             </div>
         </section>
-    );
+        </div>
+    }
 };
 
 export default AddCourseComponent;
