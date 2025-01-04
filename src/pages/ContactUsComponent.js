@@ -27,7 +27,7 @@ const ContactUsComponent = () => {
 
         // Send email using emailjs
         try {
-            let response = await emailjs.send("service_ozh25er", "template_h1wrj47", {
+            let response = await emailjs.send("service_ry7lvvq", "template_h1wrj47", {
                 fname: form.fname,
                 to_name: "ScriptSprite",
                 email: form.email,
