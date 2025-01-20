@@ -4,7 +4,7 @@ import '../assets/css/course.css';
 
 const CourseComponent = () => {
     const courses = [
-        {'id':1, 'name':'Learn Python', 'description':'Python is a versatile and powerful programming language that is widely used for various applications, including web development, data analysis, artificial intelligence, and more', 'image':'Python.png', 'buttonVal':'Click Here for Syllabus', 'pdf':'#'},
+        {'id':1, 'name':'Learn Python', 'description':'Python is a versatile and powerful programming language that is widely used for various applications, including web development, data analysis, artificial intelligence, and more', 'image':'Python.png', 'buttonVal':'Click Here for Syllabus', 'pdf':'Data_Science_AI_Course_Syllabus.pdf'},
         {'id':2, 'name':'Learn Typescript', 'description':'TypeScript extends JavaScript by adding types to the language. TypeScript speeds up your development experience by catching errors and providing fixes ...', 'image':'TypeScript.jpg', 'buttonVal':'Click Here for Syllabus', 'pdf':'Typescript_with_Angular4Syllabus.pdf'},
         {'id':3, 'name':'Learn Nodejs', 'description':'Node.js® is a JavaScript runtime built on Chromes V8 JavaScript engine.', 'image':'NodeJs.jpg', 'buttonVal':'Click Here for Syllabus', 'pdf':'NodeJSSyllabus.pdf'},
         {'id':4, 'name':'Learn Reactjs', 'description':'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript.', 'image':'React.jpg', 'buttonVal':'Click Here for Syllabus', 'pdf':'ReactJSSyllabus.pdf'},
